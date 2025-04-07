@@ -17,4 +17,4 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd pr-stage-6
-            ./deploy.sh
+            ./deplot.sh
