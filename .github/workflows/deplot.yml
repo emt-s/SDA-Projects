@@ -8,13 +8,21 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: SSH into VM and run script
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy to Azure VM via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.VM_IP }}
           username: azureuser
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: 22
           script: |
-            cd pr-stage-6
-            ./deplot.sh
+            cd ~/pr-stage-5/SDA-Projects
+            git pull origin main
+            source ~/pr-stage-5/venv/bin/activate
+            sudo systemctl restart backend
+            sudo systemctl restart frontend
