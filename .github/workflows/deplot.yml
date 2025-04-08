@@ -22,7 +22,7 @@ jobs:
           port: 22
           script: |
             cd ~/pr-stage-5/SDA-Projects
-            git pull master
+            git pull origin master
             source ~/pr-stage-5/venv/bin/activate
             sudo systemctl restart backend
             sudo systemctl restart frontend
